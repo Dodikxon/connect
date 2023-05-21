@@ -18,6 +18,23 @@ services:
       - ./:/var/www/app
     networks:
       - internal
+  pgsql:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=connect
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=syefwpguppt
+    ports:
+      - '5432:5432'
+    networks:
+      - internal
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
 
 networks:
   internal:
